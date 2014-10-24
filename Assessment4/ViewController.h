@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <NSFetchedResultsControllerDelegate>
+
+@property NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+
 
 @end
