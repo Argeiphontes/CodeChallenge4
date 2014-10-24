@@ -13,7 +13,7 @@
 @interface DogsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *dogsTableView;
-@property NSMutableArray *dogsArray;
+@property NSArray *dogsArray;
 
 @end
 
@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
     self.title = @"Dogs";
-    self.dogsArray = [NSMutableArray new];
+    self.dogsArray = [NSArray new];
 }
 
 #pragma mark - UITableView Delegate Methods
@@ -56,5 +56,20 @@
 
     }
 }
+
+-(void)showDogs
+{
+
+
+//    NSFetchRequest *coreDataRequest = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
+//    self.dogsArray = [self.managedObjectContext executeFetchRequest:coreDataRequest error:nil];
+//
+//    Person *dogsOwned = [
+//    for (NSString *dogsOwned in <#collection#>) {
+//        <#statements#>
+//    }
+//}
+
+
 
 @end
