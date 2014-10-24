@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "Person.h"
+#import "Dog.h"
 
 @interface AddDogViewController : UIViewController
+@property NSManagedObjectContext *managedObjectContext;
+@property Person *person;
+@property Dog *dog;
 
 @end

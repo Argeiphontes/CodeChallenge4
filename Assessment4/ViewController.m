@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Person.h"
+#import "DogsViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
@@ -40,7 +41,8 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"myCell"];
     Person *person = self.ownersArray[indexPath.row];
-    cell.textLabel.text = person.name;    return cell;
+    cell.textLabel.text = person.name;
+    return cell;
 }
 
 #pragma mark - UIAlertView Methods
@@ -78,6 +80,15 @@
                                           otherButtonTitles:@"Purple", @"Blue", @"Orange", @"Green", nil];
     self.colorAlert.tag = 1;
     [self.colorAlert show];
+}
+
+#pragma mark - Segue
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    DogsViewController *viewController = segue.destinationViewController;
+    NSIndexPath *ip = [self.myTableView indexPathForSelectedRow];
+    viewController.person = self.ownersArray[ip.row];
+    viewController.managedObjectContext = self.managedObjectContext;
 }
 
 -(void)loadJSON

@@ -7,10 +7,13 @@
 //
 
 #import "DogsViewController.h"
+#import "AddDogViewController.h"
+#import "Dog.h"
 
 @interface DogsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *dogsTableView;
+@property NSMutableArray *dogsArray;
 
 @end
 
@@ -20,20 +23,21 @@
 {
     [super viewDidLoad];
     self.title = @"Dogs";
+    self.dogsArray = [NSMutableArray new];
 }
 
 #pragma mark - UITableView Delegate Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //TODO: UPDATE THIS ACCORDINGLY
-    return 1;
+    return self.dogsArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"dogCell"];
-    //TODO: UPDATE THIS ACCORDINGLY
+    Dog *dog = self.dogsArray[indexPath.row];
+    cell.textLabel.text = dog.name;
     return cell;
 }
 
@@ -41,7 +45,11 @@
 {
     if ([segue.identifier isEqualToString: @"AddDogSegue"])
     {
-
+        AddDogViewController *viewController = segue.destinationViewController;
+//        NSIndexPath *ip = [self.dogsTableView indexPathForSelectedRow];
+//        viewController.dog = self.dogsArray[ip.row];
+        viewController.person = self.person;
+        viewController.managedObjectContext = self.managedObjectContext;
     }
     else
     {

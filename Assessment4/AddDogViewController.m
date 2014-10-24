@@ -7,6 +7,7 @@
 //
 
 #import "AddDogViewController.h"
+#import "Dog.h"
 
 @interface AddDogViewController ()
 
@@ -29,6 +30,13 @@
 - (IBAction)onPressedUpdateDog:(UIButton *)sender
 {
 
+    Dog *dog = [NSEntityDescription insertNewObjectForEntityForName:@"Dog" inManagedObjectContext:self.managedObjectContext];
+    dog.name = self.nameTextField.text;
+    dog.breed = self.breedTextField.text;
+    dog.color = self.colorTextField.text;
+
+    [self.person addDogObject: dog];
+    [self.managedObjectContext save:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
